@@ -1,14 +1,10 @@
 'use strict';
 
 function solveEquation(a, b, c) {
-  let arr;
+  let arr = [];
   let d = Math.pow(b, 2) - 4 * a * c;
   let x1;
   let x2;
-
-  if (d < 0) {
-    arr = [];
-  };
 
   if (d === 0) {
     x1 = -b / (2 * a);
@@ -43,10 +39,6 @@ function countingMonths (date) {
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
   let totalAmount;
-  let loanBody;     // тело кредита
-  let p;            // 1/12 процентной ставки
-  let payment;      // ежемесячный платеж
-  let months;       // количество месяцев для погашения кредита
 
   if (isNaN(percent)) {
     totalAmount = `Параметр "Процентная ставка" содержит неправильное значение "${percent}"`;
@@ -63,10 +55,10 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     return totalAmount;
   }
 
-  months = countingMonths(date);
-  loanBody = amount - contribution;
-  p = percent / 1200;
-  payment = loanBody * (p + (p / (Math.pow((1 + p), months) - 1)));
+  let months = countingMonths(date);         // количество месяцев для погашения кредита
+  let loanBody = amount - contribution;  // тело кредита
+  let p = percent / 1200;                // 1/12 процентной ставки
+  let payment = loanBody * (p + (p / (Math.pow((1 + p), months) - 1)));  // ежемесячный платеж
 
   totalAmount = payment * months;
 
